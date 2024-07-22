@@ -16,6 +16,13 @@ class TrackerResponse:
     Even though the connection was successful from a network point of view,
     the tracker might have returned an error (stated in the `failure`
     property).
+
+    Parses the response to extract information such as:
+        Failure reason (if any)
+        Interval for sending periodic requests
+        Number of seeders (complete)
+        Number of leechers (incomplete)
+        List of peers (IP and port).
     """
 
     def __init__(self, response: dict):
@@ -30,7 +37,6 @@ class TrackerResponse:
         If no error occurred this will be None
         """
         if b'failure reason' in self.response:
-            
             return self.response[b'failure reason'].decode('utf-8')
         return None
 
@@ -77,6 +83,7 @@ class TrackerResponse:
             peers = [peers[i:i+6] for i in range(0, len(peers), 6)]
 
             # Convert the encoded address to a list of tuples
+            # Get the human redable dotted IP address,p[:4] byte IP and 2 byte port
             return [(socket.inet_ntoa(p[:4]), _decode_port(p[4:]))
                     for p in peers]
 
@@ -95,6 +102,11 @@ class Tracker:
     """
     Represents the connection to a tracker for a given Torrent that is either
     seeder or leacher.
+
+            Constructs the announce URL with parameters like info_hash, peer_id, port, etc.
+            Logs the connection attempt to the tracker.
+            Sends an HTTP GET request to the tracker.
+            Reads and decodes the tracker's response using bencoding.
     """
 
     def __init__(self, torrent):
@@ -162,7 +174,7 @@ class Tracker:
             'info_hash': self.torrent.info_hash,
             'peer_id': self.peer_id,
             'port': 6889,
-            # TODO Update stats when communicating with tracker
+            # todo Update stats when communicating with tracker
             'uploaded': 0,
             'downloaded': 0,
             'left': 0,

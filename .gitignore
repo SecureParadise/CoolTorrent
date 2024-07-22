@@ -1,1 +1,3 @@
 .project
+torrent/cli.py
+torrent/client.py
