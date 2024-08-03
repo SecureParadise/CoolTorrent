@@ -1,0 +1,40 @@
+Introduction:
+Website hosting involves making a website available on the internet by storing its files (like HTML, CSS, JavaScript, images) on a server. When a user enters a website's URL into their browser, the browser sends a request to the server, which then delivers the website's files, allowing the user to view and interact with the site.
+
+Hosting on GitHub:
+GitHub Pages is a free service provided by GitHub that allows you to host static websites directly from a GitHub repository. It’s a popular choice for personal, project, or organizational websites. To host a static site, you create a GitHub repository and upload your website files.
+
+Domain Names and Namecheap:
+A domain name is an easy-to-remember address used to locate a website on the internet, like example.com. It simplifies web navigation compared to using numerical IP addresses. Namecheap is a domain registrar where you can buy and manage domain names. If you have a domain from Namecheap and want to use it with a website hosted on GitHub Pages, you need to configure your DNS settings to point to GitHub's servers.
+
+Why Domain Names Matter?
+Easy Access: Domain names make it easier to remember and access websites instead of using complex numerical IP addresses.
+Brand Recognition: A custom domain name helps establish and maintain your brand's online presence.
+
+DNS Servers:
+The Domain Name System (DNS) translates domain names into IP addresses. This process allows users to access websites using human-readable domain names rather than numeric IP addresses.
+
+How DNS Functions?
+1.Root DNS Servers: These top-level servers direct queries to TLD servers and don’t store specific domain details. They know where to route requests for top-level domains like .com or .org.
+
+2Top-Level Domain (TLD) Servers: Managed by organizations like Verisign for .com domains, these servers contain information about the authoritative DNS servers for each domain under the TLD.
+
+3.Authoritative DNS Servers: These servers hold the DNS records for specific domains, such as A records (IP addresses) and CNAME records (canonical names). They provide the final resolution in the DNS query process.
+
+4.Domain Registrar (e.g., Namecheap): Acts as a middleman, allowing you to register and manage domain names. They ensure the domain is registered correctly and update TLD servers with authoritative DNS information.
+
+Types of DNS Records:
+
+1.A Record: Maps a domain name to an IPv4 address.
+2AAAA Record: Maps a domain name to an IPv6 address.
+3.CNAME Record: Points a domain name to another domain name.
+4.MX Record: Defines mail servers for the domain.
+
+Typical Process
+Configure DNS: Set up your domain’s DNS settings in Namecheap to direct traffic to GitHub’s servers. For example, add a CNAME record pointing to your GitHub Pages URL (e.g., username.github.io).
+
+Role of Authoritative DNS Server: Namecheap (or its DNS provider) manages your DNS records. When someone types in your domain name, DNS queries are resolved through various DNS servers, ultimately leading users to GitHub’s servers where your site is hosted.
+
+Conclusion
+
+In summary, Namecheap helps you acquire and manage a custom domain name that maps to the IP address of your GitHub Pages site. By acting as the authoritative DNS server, Namecheap ensures that DNS queries are resolved correctly, directing users to your website hosted on GitHub Pages.
